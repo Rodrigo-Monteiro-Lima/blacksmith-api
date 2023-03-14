@@ -14,4 +14,9 @@ export default class ValidationsSchemas {
     level: this.#joi.number().integer().min(1).required(),
     password: this.#joi.string().min(8).required(),
   });
+
+  loginSchema = this.#joi.object({
+    username: this.#joi.string().required(),
+    password: this.#joi.string().required(),
+  });
 }
