@@ -21,4 +21,10 @@ export default class ProductModel {
     );
     return product || null;
   };
+
+  getAll = async (): Promise<IProduct[]> => {
+    const [products] = await this.#connection
+      .execute<IProduct[] & RowDataPacket[]>('SELECT * FROM Trybesmith.products');
+    return products;
+  };
 }

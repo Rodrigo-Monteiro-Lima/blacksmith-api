@@ -1,5 +1,5 @@
 import ProductModel from '../models/product.model';
-import { INewProduct } from '../interfaces/product.interface';
+import { INewProduct, IProduct } from '../interfaces/product.interface';
 import StatusCodes from '../utils/statusCodes';
 import { ICreateProduct } from '../interfaces/return.interface';
 import ValidationsInputs from './validations/validationsInputs';
@@ -16,5 +16,10 @@ export default class ProductService {
     if (productExist) return { status: StatusCodes.CONFLICT, message: 'Product already exists' };
     const newProduct = await this.#model.create(product);
     return { message: '', status: StatusCodes.CREATED, product: newProduct };
+  };
+
+  getAll = async (): Promise<IProduct[]> => {
+    const products = await this.#model.getAll();
+    return products;
   };
 }
