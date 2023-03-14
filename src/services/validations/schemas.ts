@@ -7,4 +7,11 @@ export default class ValidationsSchemas {
     name: this.#joi.string().min(3).required(),
     amount: this.#joi.string().min(3).required(),
   });
+
+  userSchema = this.#joi.object({
+    username: this.#joi.string().min(3).required(),
+    vocation: this.#joi.string().min(3).required(),
+    level: this.#joi.number().integer().min(1).required(),
+    password: this.#joi.string().min(8).required(),
+  });
 }
