@@ -12,3 +12,7 @@ export interface ICreateProduct extends IReturn {
 export interface ICreateToken extends IReturn {
   token?: string;
 }
+
+export interface ICreateOrder extends IReturn {
+  order?: { userId: number, productsIds:Array<number> }
+}

@@ -24,7 +24,25 @@ export default class ProductModel {
 
   getAll = async (): Promise<IProduct[]> => {
     const [products] = await this.#connection
-      .execute<IProduct[] & RowDataPacket[]>('SELECT * FROM Trybesmith.products');
+      .execute<IProduct[] & RowDataPacket[]>(
+      'SELECT id, name, amount, order_id as orderId FROM Trybesmith.products',
+    );
     return products;
+  };
+
+  update = async (orderId: number, productId: number): Promise<number> => {
+    const [{ affectedRows }] = await this.#connection.execute<ResultSetHeader>(
+      'UPDATE Trybesmith.products SET order_id=? WHERE id=?',
+      [orderId, productId],
+    );
+    return affectedRows;
+  };
+
+  getById = async (id: number): Promise<IProduct | null> => {
+    const [[product]] = await this.#connection.execute<IProduct[] & RowDataPacket[]>(
+      'SELECT * FROM Trybesmith.products WHERE id=?', 
+      [id],
+    );
+    return product || null;
   };
 }

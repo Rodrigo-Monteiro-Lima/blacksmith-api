@@ -19,4 +19,13 @@ export default class ValidationsSchemas {
     username: this.#joi.string().required(),
     password: this.#joi.string().required(),
   });
+
+  orderSchema = this.#joi.object({
+    productsIds: this.#joi.array().items(Joi.number().integer().min(1).messages({
+      'number.base': '"productsIds" must include only numbers',
+    })).min(1).required()
+      .messages({
+        'array.min': '"productsIds" must include only numbers',
+      }),
+  });
 }
