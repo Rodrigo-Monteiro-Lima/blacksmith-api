@@ -47,6 +47,8 @@ services:
     image: mysql:8.0.21
     platform: linux/x86_64
     restart: always
+    volumes:
+      - ./Trybesmith.sql:/docker-entrypoint-initdb.d/Trybesmith.sql
     # Lista de portas mapeadas de dentro para fora do container
     # na notação porta_de_fora:porta_de_dentro
     ports:
