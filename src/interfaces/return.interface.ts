@@ -8,3 +8,7 @@ export interface IReturn {
 export interface ICreateProduct extends IReturn {
   product?: IProduct;
 }
+
+export interface ICreateToken extends IReturn {
+  token?: string;
+}
