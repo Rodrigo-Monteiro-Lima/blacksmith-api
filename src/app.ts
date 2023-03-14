@@ -1,7 +1,7 @@
 import express from 'express';
 import compression from 'compression';
 import ErrorMiddleware from './middlewares/error.middleware';
-import { productRouter, userRouter } from './routers';
+import { productRouter, userRouter, orderRouter } from './routers';
 import CacheMiddleware from './middlewares/cache.middleware';
 
 const errorMiddleware = new ErrorMiddleware();
@@ -19,6 +19,8 @@ app.use(cacheMiddleware.setCache);
 app.use('/products', productRouter);
 
 app.use('/users', userRouter);
+
+app.use('/orders', orderRouter);
 
 app.use(errorMiddleware.error);
 
