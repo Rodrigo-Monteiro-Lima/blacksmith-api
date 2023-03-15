@@ -5,9 +5,14 @@ import { ICreateProduct } from '../interfaces/return.interface';
 import ValidationsInputs from './validations/validationsInputs';
 
 export default class ProductService {
-  #model: ProductModel = new ProductModel();
+  #model: ProductModel;
 
-  #validationsInputs: ValidationsInputs = new ValidationsInputs();
+  #validationsInputs: ValidationsInputs;
+
+  constructor() {
+    this.#model = new ProductModel();
+    this.#validationsInputs = new ValidationsInputs();
+  }
 
   create = async (product: INewProduct): Promise<ICreateProduct> => {
     const error = this.#validationsInputs.validateNewProduct(product);

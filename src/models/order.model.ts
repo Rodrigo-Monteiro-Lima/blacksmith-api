@@ -3,7 +3,11 @@ import { IOrder } from '../interfaces/order.interface';
 import connection from './connection';
 
 export default class OrderModel {
-  #connection = connection;
+  #connection;
+
+  constructor() {
+    this.#connection = connection;
+  }
 
   getAll = async (): Promise<IOrder[]> => {
     const [orders] = await this.#connection.execute<IOrder[] & RowDataPacket[]>(`

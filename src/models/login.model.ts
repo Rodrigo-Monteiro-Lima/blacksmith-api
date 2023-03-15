@@ -3,7 +3,11 @@ import { IUser } from '../interfaces/user.interface';
 import connection from './connection';
 
 export default class LoginModel {
-  #connection = connection;
+  #connection;
+
+  constructor() {
+    this.#connection = connection;
+  }
 
   login = async (
     username: string, 

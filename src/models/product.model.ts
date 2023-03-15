@@ -3,7 +3,11 @@ import { INewProduct, IProduct, IRegisterProduct } from '../interfaces/product.i
 import connection from './connection';
 
 export default class ProductModel {
-  #connection = connection;
+  #connection;
+
+  constructor() {
+    this.#connection = connection;
+  }
 
   create = async (product: INewProduct): Promise<IRegisterProduct> => {
     const { name, amount } = product;

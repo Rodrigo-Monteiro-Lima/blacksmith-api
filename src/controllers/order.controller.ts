@@ -4,7 +4,11 @@ import OrderService from '../services/order.service';
 import StatusCodes from '../utils/statusCodes';
 
 export default class OrderController {
-  #orderService: OrderService = new OrderService();
+  #orderService: OrderService;
+
+  constructor() {
+    this.#orderService = new OrderService();
+  }
 
   getAll = async (_req: Request, res: Response, next: NextFunction) => {
     try {

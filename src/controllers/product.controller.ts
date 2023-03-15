@@ -4,7 +4,11 @@ import ProductService from '../services/product.service';
 import StatusCodes from '../utils/statusCodes';
 
 export default class ProductController {
-  #productService = new ProductService();
+  #productService: ProductService;
+
+  constructor() {
+    this.#productService = new ProductService();
+  }
 
   create = async (req: Request<object, object, INewProduct>, res: Response, next: NextFunction) => {
     try {

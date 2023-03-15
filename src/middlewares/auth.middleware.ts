@@ -4,7 +4,11 @@ import Token from '../utils/jwt';
 import StatusCodes from '../utils/statusCodes';
 
 export default class AuthMiddleware {
-  #token = new Token();
+  #token: Token;
+
+  constructor() {
+    this.#token = new Token();
+  }
 
   auth = (req: IReq, _res: Response, next: NextFunction) => {
     const token = req.headers.authorization;

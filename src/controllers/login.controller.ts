@@ -3,7 +3,11 @@ import { ILogin } from '../interfaces/user.interface';
 import LoginService from '../services/login.service';
 
 export default class LoginController {
-  #loginService: LoginService = new LoginService();
+  #loginService: LoginService;
+
+  constructor() {
+    this.#loginService = new LoginService();
+  }
 
   login = async (req: Request<object, object, ILogin>, res: Response, next: NextFunction) => {
     try {

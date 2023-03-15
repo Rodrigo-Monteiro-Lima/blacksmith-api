@@ -3,7 +3,11 @@ import { INewUSer, IUser } from '../interfaces/user.interface';
 import connection from './connection';
 
 export default class UserModel {
-  #connection = connection;
+  #connection;
+
+  constructor() {
+    this.#connection = connection;
+  }
 
   create = async (user: INewUSer): Promise<IUser> => {
     const { username, vocation, level, password } = user;

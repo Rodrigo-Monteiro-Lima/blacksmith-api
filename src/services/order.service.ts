@@ -7,11 +7,17 @@ import { ICreateOrder, IReturn } from '../interfaces/return.interface';
 import { IProduct } from '../interfaces/product.interface';
 
 export default class OrderService {
-  #orderModel: OrderModel = new OrderModel();
+  #orderModel: OrderModel;
 
-  #productModel: ProductModel = new ProductModel();
+  #productModel: ProductModel;
 
-  #validationsInputs: ValidationsInputs = new ValidationsInputs();
+  #validationsInputs: ValidationsInputs;
+
+  constructor() {
+    this.#orderModel = new OrderModel();
+    this.#productModel = new ProductModel();
+    this.#validationsInputs = new ValidationsInputs();
+  }
 
   getAll = async (): Promise<IOrder[]> => {
     const orders = await this.#orderModel.getAll();

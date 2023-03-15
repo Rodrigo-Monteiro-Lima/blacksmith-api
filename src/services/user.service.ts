@@ -6,11 +6,17 @@ import { ICreateToken } from '../interfaces/return.interface';
 import ValidationsInputs from './validations/validationsInputs';
 
 export default class UserService {
-  #model: UserModel = new UserModel();
+  #model: UserModel;
 
-  #token: Token = new Token();
+  #token: Token;
 
-  #validationsInputs: ValidationsInputs = new ValidationsInputs();
+  #validationsInputs: ValidationsInputs;
+
+  constructor() {
+    this.#model = new UserModel();
+    this.#token = new Token(); 
+    this.#validationsInputs = new ValidationsInputs();
+  }
 
   create = async (user: INewUSer): Promise<ICreateToken> => {
     const error = this.#validationsInputs.validateNewUser(user);

@@ -6,11 +6,17 @@ import Token from '../utils/jwt';
 import { ICreateToken } from '../interfaces/return.interface';
 
 export default class LoginService {
-  #model: LoginModel = new LoginModel();
+  #model: LoginModel;
 
-  #validationsInputs: ValidationsInputs = new ValidationsInputs();
+  #validationsInputs: ValidationsInputs;
 
-  #token: Token = new Token();
+  #token: Token;
+
+  constructor() {
+    this.#model = new LoginModel();
+    this.#validationsInputs = new ValidationsInputs();
+    this.#token = new Token();
+  }
 
   login = async (user: ILogin): Promise<ICreateToken> => {
     const error = this.#validationsInputs.validateLogin(user);

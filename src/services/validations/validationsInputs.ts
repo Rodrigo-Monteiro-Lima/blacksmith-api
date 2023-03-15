@@ -5,7 +5,11 @@ import { ILogin, INewUSer } from '../../interfaces/user.interface';
 import { INewOrder } from '../../interfaces/order.interface';
 
 export default class ValidationsInputs {
-  #validationsSchemas = new ValidationsSchemas();
+  #validationsSchemas;
+
+  constructor() {
+    this.#validationsSchemas = new ValidationsSchemas();
+  }
 
   validateNewProduct = (product: INewProduct) => {
     const { error } = this.#validationsSchemas.productSchema.validate(product);

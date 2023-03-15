@@ -3,7 +3,11 @@ import { INewUSer } from '../interfaces/user.interface';
 import UserService from '../services/user.service';
 
 export default class UserController {
-  #userService: UserService = new UserService();
+  #userService: UserService;
+
+  constructor() {
+    this.#userService = new UserService();
+  }
 
   create = async (req: Request<object, object, INewUSer>, res: Response, next: NextFunction) => {
     try {
