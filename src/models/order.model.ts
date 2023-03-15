@@ -21,6 +21,13 @@ export default class OrderModel {
     return insertId;
   };
 
+  delete = async (id: number): Promise<void> => {
+    await this.#connection.execute(
+      'DELETE FROM Trybesmith.orders WHERE id=? ',
+      [id],
+    );
+  };
+
   // eslint-disable-next-line max-lines-per-function
   // createTransaction = async (
   //   productId: number, 

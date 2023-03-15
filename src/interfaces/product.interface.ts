@@ -5,5 +5,9 @@ export interface INewProduct {
 
 export interface IProduct extends INewProduct {
   id: number,
-  orderId?: Array<number>,
+  orderId: number,
+}
+
+export interface IRegisterProduct extends INewProduct {
+  id: number,
 }

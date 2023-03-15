@@ -1,4 +1,4 @@
-import { IProduct } from './product.interface';
+import { IRegisterProduct } from './product.interface';
 
 export interface IReturn {
   status: number;
@@ -6,7 +6,7 @@ export interface IReturn {
 } 
 
 export interface ICreateProduct extends IReturn {
-  product?: IProduct;
+  product?: IRegisterProduct;
 }
 
 export interface ICreateToken extends IReturn {
