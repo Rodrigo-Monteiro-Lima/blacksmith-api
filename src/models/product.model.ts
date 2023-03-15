@@ -44,7 +44,7 @@ export default class ProductModel {
 
   getById = async (id: number): Promise<IProduct | null> => {
     const [[product]] = await this.#connection.execute<IProduct[] & RowDataPacket[]>(
-      'SELECT * FROM Trybesmith.products WHERE id=?', 
+      'SELECT id, name, amount, order_id as orderId FROM Trybesmith.products WHERE id=?', 
       [id],
     );
     return product || null;
