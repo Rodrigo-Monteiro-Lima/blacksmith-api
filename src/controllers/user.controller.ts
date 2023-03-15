@@ -12,8 +12,8 @@ export default class UserController {
       if (newUser.message) return next(newUser);
       const { status, token } = newUser;
       return res.status(status).json({ token });
-    } catch (error: any) {
-      return next({ message: error.message });
+    } catch (error: unknown) {
+      return next({ message: (error as Error).message });
     }
   }; 
 }

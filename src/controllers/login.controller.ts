@@ -12,8 +12,8 @@ export default class LoginController {
       if (user.message) return next(user);
       const { status, token } = user;
       return res.status(status).json({ token });
-    } catch (error: any) {
-      return next({ message: error.message });
+    } catch (error: unknown) {
+      return next({ message: (error as Error).message });
     }
   }; 
 }

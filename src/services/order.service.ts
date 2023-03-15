@@ -32,7 +32,42 @@ export default class OrderService {
       .map(async (id) => this.#productModel.update(orderId, id));
     const resolveRegistration = await Promise.all(productsRegistration);
     const isFailed = resolveRegistration.find((affectedRows) => affectedRows === 0);
-    if (isFailed) return { status: 500, message: 'Erro has occurred' }; 
+    if (isFailed) return { status: 500, message: 'Error has occurred' }; 
     return { message: '', status: StatusCodes.CREATED, order: { userId, productsIds } };
   };
+
+  // // eslint-disable-next-line max-lines-per-function
+  // createTransaction = async (order: INewOrder, userId: number): Promise<ICreateOrder> => {
+  //   const { productsIds } = order;
+  //   const id: boolean | number = false;
+  //   const error = this.#validationsInputs.validateNewOrder(order);
+  //   if (error.message) return error;
+  //   // const a = await this.#orderModel.createTransaction(userId, productsIds);
+  //   console.log(a);
+  //   const a = productsIds.map(async (productId, index, arr) => {
+  //     console.log(arr[0]);
+  //     if (index === 0) {
+  //       const { insertId } = await this.#orderModel.createTransaction(productId, userId, id);
+  //       id = insertId;
+  //       console.log(id);
+  //     } else {
+  //       await this.#orderModel.createTransaction(productId, userId, id);
+  //     }
+  //   });
+  //   await Promise.all(a);
+  //   productsIds.forEach(async (productId, index) => {
+  //     if (index === 0) {
+  //       const { insertId } = await this.#orderModel.createTransaction(productId, userId, id);
+  //       id = insertId;
+  //       console.log(id);
+  //     } // else {
+  //     //   await this.#orderModel.createTransaction(productId, userId, id);
+  //     // }
+  //     console.log(id);
+  //   });
+  //   const orderId = await this.#orderModel.createTransaction(userId);
+  //   const isFailed = resolveRegistration.find((affectedRows) => affectedRows === 0);
+  //   if (isFailed) return { status: 500, message: 'Erro has occurred' }; 
+  //   return { message: '', status: StatusCodes.CREATED, order: { userId, productsIds } };
+  // };
 }

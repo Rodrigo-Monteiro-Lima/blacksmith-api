@@ -13,8 +13,8 @@ export default class ProductController {
       if (newProduct.message) return next(newProduct);
       const { status, product } = newProduct;
       return res.status(status).json(product);
-    } catch (error: any) {
-      return next({ message: error.message });
+    } catch (error: unknown) {
+      return next({ message: (error as Error).message });
     }
   };
 
@@ -22,8 +22,8 @@ export default class ProductController {
     try {
       const products = await this.#productService.getAll();
       return res.status(StatusCodes.OK).json(products);
-    } catch (error: any) {
-      return next({ message: error.message });
+    } catch (error: unknown) {
+      return next({ message: (error as Error).message });
     }
   };
 }

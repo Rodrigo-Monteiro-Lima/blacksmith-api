@@ -10,8 +10,8 @@ export default class OrderController {
     try {
       const orders = await this.#orderService.getAll();
       return res.status(StatusCodes.OK).json(orders);
-    } catch (error: any) {
-      return next({ message: error.message });
+    } catch (error: unknown) {
+      return next({ message: (error as Error).message });
     }
   };
 
@@ -22,8 +22,8 @@ export default class OrderController {
         .create(body, user?.id as number);
       if (message) return next({ message, status });
       return res.status(status).json(order);
-    } catch (error: any) {
-      return next({ message: error.message });
+    } catch (error: unknown) {
+      return next({ message: (error as Error).message });
     }
   };
 }
