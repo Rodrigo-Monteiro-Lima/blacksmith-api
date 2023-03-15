@@ -39,7 +39,7 @@ export default class OrderService {
     if (error.message) return error;
     const getProducts = productsIds.map(async (id) => this.#productModel.getById(id));
     const resolveGetById = await Promise.all(getProducts);
-    const a = resolveGetById.filter((el) => el !== null) as IProduct[];
+    const filteredProducts = resolveGetById.filter((el) => el !== null) as IProduct[];
     const productExist = resolveGetById.findIndex((product) => !product); 
     if (productExist !== -1) {
       return { status: StatusCodes.NOT_FOUND, message: `productId[${productExist}] not found` };
@@ -49,7 +49,7 @@ export default class OrderService {
       .map(async (id) => this.#productModel.update(orderId, id));
     const resolveRegistration = await Promise.all(productsRegistration);
     const isFailed = resolveRegistration.some((affectedRows) => affectedRows === 0);
-    if (isFailed) return this.rollback(a, orderId);
+    if (isFailed) return this.rollback(filteredProducts, orderId);
     return { message: '', status: StatusCodes.CREATED, order: { userId, productsIds } };
   };
 
